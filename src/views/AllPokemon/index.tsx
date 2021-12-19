@@ -1,7 +1,8 @@
+import { useState } from "react";
 import PokemonHolder from "../../components/PokemonHolder";
 import "./AllPokemon.css";
 
-const id: number = 2;
+let id: number = 1;
 
 interface Pokemon {
   name: string;
@@ -17,85 +18,18 @@ const poke: Pokemon = {
 };
 
 const AllPokemon = () => {
+  const [pokemon, setPokemon] = useState([poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke, poke])
+
   return (
     <div className="allPokemonPage">
       <h1 className="allPokemonPage__title">This is the all pokemon page</h1>
       <div className="allPokemonPage__grid">
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
-        <PokemonHolder
-          name={poke.name}
-          details={poke.details}
-          image={poke.image}
-        />
+        { pokemon.map((el, idx) => (
+          <div key={idx}>
+            <PokemonHolder name={el.name} details={el.details} image={el.image} count={idx} />
+          </div>
+        ))
+        }
       </div>
     </div>
   );

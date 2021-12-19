@@ -5,19 +5,17 @@ interface PokemonDetails {
   name: string;
   details: string;
   image: string;
+  count: number;
 }
 
 const PokemonHolder: React.FC<PokemonDetails> = (props) => {
 
-  const imageStyle = {
-    background: `url(${props.image}) no-repeat center center`,
-    role: 'img',
-    ariaLabel: 'pokemon image',
-    border: '2px solid black !important',
+  const animation = {
+    'animationDelay': `${props.count}00ms`
   }
 
   return (
-    <div className="pokemonCard">
+    <div className="pokemonCard" style={animation}>
       <div className="pokemonCard__image" >
         <img src={props.image} alt="" />
       </div>

@@ -1,10 +1,21 @@
 .pokemonCard {
+  transform: translateX(100vw);
   display: flex;
   flex-direction: row;
   border-radius: 1em 0 1em 0;
   background-color: var(--black);
   color: var(--white);
   text-align: left;
+  animation: slideIn 400ms;
+  animation-fill-mode: forwards;  
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100vw);
+  } 100% {
+    transform: translateX(0px);
+  }
 }
 
 .pokemonCard__image {
@@ -23,9 +34,3 @@
   padding: 1em;
   flex-direction: column;
 }
-
-/* @media screen and (min-width: 50em) {
-  .pokemonCard {
-    flex-direction: column;
-  }
-} */
