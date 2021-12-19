@@ -10,12 +10,12 @@ interface PokemonDetails {
 
 const PokemonHolder: React.FC<PokemonDetails> = (props) => {
 
-  const animation = {
+  const animationDelay = {
     'animationDelay': `${props.count}00ms`
   }
 
   return (
-    <div className="pokemonCard" style={animation}>
+    <div className="pokemonCard" style={animationDelay}>
       <div className="pokemonCard__image" >
         <img src={props.image} alt="" />
       </div>
