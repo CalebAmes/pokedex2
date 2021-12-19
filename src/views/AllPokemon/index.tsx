@@ -1,12 +1,12 @@
 import PokemonHolder from "../../components/PokemonHolder";
 import "./AllPokemon.css";
 
-const id:number = 2
+const id: number = 2;
 
 interface Pokemon {
-  name: string,
-  details: string,
-  image: string,
+  name: string;
+  details: string;
+  image: string;
 }
 
 const poke: Pokemon = {
@@ -19,8 +19,84 @@ const poke: Pokemon = {
 const AllPokemon = () => {
   return (
     <div className="allPokemonPage">
-      <h1>This is the all pokemon page</h1>
-      <PokemonHolder name={poke.name} details={poke.details} image={poke.image} />
+      <h1 className="allPokemonPage__title">This is the all pokemon page</h1>
+      <div className="allPokemonPage__grid">
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+        <PokemonHolder
+          name={poke.name}
+          details={poke.details}
+          image={poke.image}
+        />
+      </div>
     </div>
   );
 };

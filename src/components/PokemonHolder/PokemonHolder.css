@@ -4,6 +4,7 @@
   border-radius: 1em 0 1em 0;
   background-color: var(--black);
   color: var(--white);
+  text-align: left;
 }
 
 .pokemonCard__image {
@@ -17,8 +18,14 @@
 
 .pokemonCard__info {
   font-size: 0.8em;
-  padding: 0 0.5rem;
   display: flex;
+  gap: 1em;
+  padding: 1em;
   flex-direction: column;
-  justify-content: space-evenly;
 }
+
+/* @media screen and (min-width: 50em) {
+  .pokemonCard {
+    flex-direction: column;
+  }
+} */
