@@ -12,7 +12,7 @@ interface Pokemon {
 }
 
 const AllPokemon = () => {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   const [offset, setOffset] = useState(25)
   const grid = useRef<any>(null);
   const top = useRef<any>(null);
@@ -27,7 +27,11 @@ const AllPokemon = () => {
 
   const grabPokemon = async (offset:number = 0) => {
     const data = await fetchPokemon(offset);
-    setPokemon(pokemon => [...pokemon, ...data]);
+    if (offset !== 0) {
+      setPokemon(pokemon => [...pokemon, ...data]);
+    } else {
+      setPokemon(data);
+    }
     setTimeout(scrollBottom, 2000)
     return null;
   }
