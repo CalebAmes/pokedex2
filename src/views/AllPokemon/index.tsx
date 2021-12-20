@@ -13,7 +13,7 @@ interface Pokemon {
 
 const AllPokemon = () => {
   const [pokemon, setPokemon] = useState([]);
-  const [limit, setLimit] = useState(25);
+  const [offset, setOffset] = useState(25)
   const grid = useRef<any>(null);
   const top = useRef<any>(null);
 
@@ -25,12 +25,16 @@ const AllPokemon = () => {
     grid.current.lastChild.scrollIntoView();
   }
 
-  const grabPokemon = async() => {
-    const data = await fetchPokemon(limit);
-    setLimit(limit => limit + 25)
-    setPokemon(data);
-
+  const grabPokemon = async (offset:number = 0) => {
+    const data = await fetchPokemon(offset);
+    setPokemon(pokemon => [...pokemon, ...data]);
     setTimeout(scrollBottom, 2000)
+    return null;
+  }
+
+  const morePokemonHandler = () => {
+    grabPokemon(offset);
+    setOffset(offset => offset + 25)
   }
 
   useEffect(() => {
@@ -53,7 +57,7 @@ const AllPokemon = () => {
           </div>
         ))}
       </div>
-      <button className="allPokemonPage__button" onClick={() => grabPokemon()}>
+      <button className="allPokemonPage__button" onClick={morePokemonHandler}>
         More Pokemon
       </button>
       <button className="allPokemonPage__button" onClick={scrollTop}>
