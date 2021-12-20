@@ -2,11 +2,18 @@
 .allPokemonPage {
   text-align: center;
   margin: 1em 0;
+
+  overflow: hidden;
 }
 
 .allPokemonPage__title {
   margin: 1em;
   font-size: 1.5em;
+}
+
+.testClass {
+  border: 3px solid black;
+  color: limegreen
 }
 
 .allPokemonPage__grid {
