@@ -17,7 +17,7 @@ const AllPokemon = () => {
   const top = useRef<any>(null);
 
   const scrollTop = () => {
-    top.current.scrollIntoView({ behavior: "smooth" });
+    window.scroll({ top: 0, behavior: "smooth" });
   };
 
   const scrollBottom = () => {
