@@ -11,9 +11,9 @@ const dataFormatter = (obj: PokemonApi, idx: number = 1) => {
   };
 };
 
-export const fetchPokemon = async (offset: number = 0, limit: number = 25) => {
+export const fetchPokemon = async (limit: number = 25) => {
   const data: any = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
+    `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${limit}`
   )
     .then((res) => res.json())
     .catch((err) => console.error(err));

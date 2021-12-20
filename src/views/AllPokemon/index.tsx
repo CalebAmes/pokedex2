@@ -32,14 +32,17 @@ const dataFormatter = (obj: PokemonApi, idx: number = 1) => {
 
 const AllPokemon = () => {
   const [pokemon, setPokemon] = useState([]);
-  const [data, setData] = useState([]);
+  const [limit, setLimit] = useState(25);
+
+  const grabPokemon = async() => {
+    const data = await fetchPokemon(limit);
+    setLimit(limit => limit + 25)
+    setPokemon(data);
+  }
 
   useEffect(() => {
-    (async () => {
-      const data = await fetchPokemon();
-      setPokemon(data)
-    })()
-    }, []);
+    grabPokemon()
+  }, []);
 
   return (
     <div className="allPokemonPage">
@@ -51,11 +54,14 @@ const AllPokemon = () => {
               name={el.name}
               details={el.details}
               image={el.image}
-              count={idx}
+              count={idx % 25}
             />
           </div>
         ))}
       </div>
+      <button className="allPokemonPage__morePokemon" onClick={() => grabPokemon()}>
+        More Pokemon
+      </button>
     </div>
   );
 };
