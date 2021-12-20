@@ -12,15 +12,16 @@ interface Pokemon {
 const AllPokemon = () => {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   const [offset, setOffset] = useState(25);
+  const [theme, setTheme] = useState<string>("light");
   const grid = useRef<any>(null);
   const top = useRef<any>(null);
 
   const scrollTop = () => {
-    top.current.scrollIntoView({ behavior: "smooth"});
+    top.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollBottom = () => {
-    grid.current.lastChild.scrollIntoView({ behavior: "smooth"});
+    grid.current.lastChild.scrollIntoView({ behavior: "smooth" });
   };
 
   const grabPokemon = async (offset: number = 0) => {
@@ -43,8 +44,32 @@ const AllPokemon = () => {
     grabPokemon();
   }, []);
 
+  const changeTheme = () => {
+    const title = top.current;
+    const body = document.body;
+    if (theme === "light") {
+      body.classList.add("dark-background");
+      body.classList.remove("light-background");
+      title.classList.add("allPokemonPage__title--dark");
+      title.classList.remove("allPokemonPage__title--light");
+      setTheme("dark");
+    } else {
+      body.classList.add("light-background");
+      body.classList.remove("dark-background");
+      title.classList.add("allPokemonPage__title--light");
+      title.classList.remove("allPokemonPage__title--dark");
+      setTheme("light");
+    }
+  };
+
   return (
     <div className="allPokemonPage">
+      <button
+        onClick={changeTheme}
+        className="allPokemonPage__button themeChange"
+      >
+        Theme
+      </button>
       <h1 ref={top} className="allPokemonPage__title">
         all pokemon page
       </h1>
