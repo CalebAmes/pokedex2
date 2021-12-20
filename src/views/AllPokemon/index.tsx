@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PokemonHolder from "../../components/PokemonHolder";
+import { fetchPokemon } from "../../utils/api";
 import "./AllPokemon.css";
 
 let id: number = 1;
@@ -34,9 +35,10 @@ const AllPokemon = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25")
-      .then((res) => res.json())
-      .then((data) => setPokemon(data.results.map((elem: PokemonApi, idx: number) => dataFormatter(elem, idx + 1))));
+    (async () => {
+      const data = await fetchPokemon();
+      setPokemon(data)
+    })()
     }, []);
 
   return (
