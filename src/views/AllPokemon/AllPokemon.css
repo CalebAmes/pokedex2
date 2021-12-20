@@ -2,13 +2,26 @@
 .allPokemonPage {
   text-align: center;
   margin: 1em 0;
-
   overflow: hidden;
 }
 
 .allPokemonPage__title {
+  color: var(--black);
   margin: 1em;
-  font-size: 1.5em;
+  font-size: 2em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  position: relative;
+}
+
+.allPokemonPage__title::after {
+  --title-underline-width: 16ch;
+  position: absolute;
+  content: "";
+  width: var(--title-underline-width);
+  height: 2px;
+  background: var(--black);
+  bottom: 0;
+  left: calc((50% - (var(--title-underline-width) / 2)));
 }
 
 .testClass {
@@ -43,4 +56,21 @@
   .allPokemonPage__grid {
     grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
   }
+}
+
+.allPokemonPage__button {
+  box-sizing: border-box;
+  font-weight: bold;
+  color: var(--white);
+  background: var(--blue);
+  border: none;
+  border-radius: 1em;
+  box-shadow: none;
+  padding: 1em;
+  margin: 1em;
+  transition: all ease-in-out 300ms;
+}
+
+.allPokemonPage__button:hover {
+  background: var(--black);
 }

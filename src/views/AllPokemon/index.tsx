@@ -2,9 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import PokemonHolder from "../../components/PokemonHolder";
 import { fetchPokemon } from "../../utils/api";
 import "./AllPokemon.css";
-
-let id: number = 1;
-
 interface Pokemon {
   name: string;
   details: string;
