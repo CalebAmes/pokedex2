@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import PokemonHolder from "../../components/PokemonHolder";
 import { fetchPokemon } from "../../utils/api";
 import "./AllPokemon.css";
+
 interface Pokemon {
   name: string;
   details: string;
@@ -10,42 +11,46 @@ interface Pokemon {
 
 const AllPokemon = () => {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-  const [offset, setOffset] = useState(25)
+  const [offset, setOffset] = useState(25);
   const grid = useRef<any>(null);
   const top = useRef<any>(null);
 
   const scrollTop = () => {
-    top.current.scrollIntoView();
-  }
+    top.current.scrollIntoView({ behavior: "smooth"});
+  };
 
   const scrollBottom = () => {
-    grid.current.lastChild.scrollIntoView();
-  }
+    grid.current.lastChild.scrollIntoView({ behavior: "smooth"});
+  };
 
-  const grabPokemon = async (offset:number = 0) => {
+  const grabPokemon = async (offset: number = 0) => {
     const data = await fetchPokemon(offset);
     if (offset !== 0) {
-      setPokemon(pokemon => [...pokemon, ...data]);
+      setPokemon((pokemon) => [...pokemon, ...data]);
     } else {
       setPokemon(data);
     }
-    setTimeout(scrollBottom, 2000)
+    setTimeout(scrollBottom, 1500);
     return null;
-  }
+  };
 
   const morePokemonHandler = () => {
     grabPokemon(offset);
-    setOffset(offset => offset + 25)
-  }
+    setOffset((offset) => offset + 25);
+  };
 
   useEffect(() => {
-    grabPokemon()
+    grabPokemon();
   }, []);
 
   return (
     <div className="allPokemonPage">
-      <h1 ref={top} className="allPokemonPage__title">all pokemon page</h1>
-      <button className="allPokemonPage__button" onClick={scrollBottom}>Scroll to bottom</button>
+      <h1 ref={top} className="allPokemonPage__title">
+        all pokemon page
+      </h1>
+      <button className="allPokemonPage__button" onClick={scrollBottom}>
+        Scroll to bottom
+      </button>
       <div className="allPokemonPage__grid" ref={grid}>
         {pokemon.map((el: Pokemon, idx) => (
           <div key={idx}>
@@ -62,7 +67,7 @@ const AllPokemon = () => {
         More Pokemon
       </button>
       <button className="allPokemonPage__button" onClick={scrollTop}>
-          Scroll to top
+        Scroll to top
       </button>
     </div>
   );
