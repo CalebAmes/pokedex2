@@ -24,19 +24,21 @@ const AllPokemon = () => {
     grid.current.lastChild.scrollIntoView({ behavior: "smooth" });
   };
 
-  const grabPokemon = async (offset: number = 0) => {
+  const grabPokemon = async (offset: number = 0, scroll: boolean = false) => {
     const data = await fetchPokemon(offset);
     if (offset !== 0) {
       setPokemon((pokemon) => [...pokemon, ...data]);
     } else {
       setPokemon(data);
     }
-    setTimeout(scrollBottom, 1500);
+    if (scroll) {
+      setTimeout(scrollBottom, 1500);
+    }
     return null;
   };
 
   const morePokemonHandler = () => {
-    grabPokemon(offset);
+    grabPokemon(offset, true);
     setOffset((offset) => offset + 25);
   };
 
