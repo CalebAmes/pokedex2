@@ -44,6 +44,8 @@ const AllPokemon = () => {
 
   useEffect(() => {
     grabPokemon();
+    const pokedex = JSON.parse(localStorage.getItem('pokedex'));
+    // setTheme(pokedex?.theme)
   }, []);
 
   const changeTheme = () => {
@@ -54,12 +56,16 @@ const AllPokemon = () => {
       body.classList.remove("light-background");
       title.classList.add("allPokemonPage__title--dark");
       title.classList.remove("allPokemonPage__title--light");
+      localStorage.setItem('pokedex', JSON.stringify({ theme: 'dark'}));
       setTheme("dark");
     } else {
       body.classList.add("light-background");
       body.classList.remove("dark-background");
       title.classList.add("allPokemonPage__title--light");
       title.classList.remove("allPokemonPage__title--dark");
+      localStorage.setItem('pokedex', JSON.stringify({
+        theme: 'light'
+      }))
       setTheme("light");
     }
   };
