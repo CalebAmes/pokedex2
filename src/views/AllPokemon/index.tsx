@@ -42,16 +42,12 @@ const AllPokemon = () => {
     setOffset((offset) => offset + 25);
   };
 
-  useEffect(() => {
-    grabPokemon();
-    let pokedex:any = localStorage.getItem('pokedex');
-    if(pokedex) {
-      pokedex = JSON.parse(pokedex)
-      setTheme(pokedex?.theme)
-    }
-  }, []);
+  const changeTheme = () => {
+    if(theme === "dark") setTheme("light")
+    else setTheme("dark")
+  };
 
-  useEffect(() => {
+  const themeHandler = () => {
     const title = top.current;
     const body = document.body;
     if (theme === "dark") {
@@ -69,29 +65,21 @@ const AllPokemon = () => {
         theme: 'light'
       }))
     }
+  }
+  
+  useEffect(() => {
+    grabPokemon();
+    let pokedex:any = localStorage.getItem('pokedex');
+    if(pokedex) {
+      pokedex = JSON.parse(pokedex)
+      setTheme(pokedex?.theme)
+    }
+  }, []);
+
+  useEffect(() => {
+    themeHandler()
   }, [theme]);
 
-  const changeTheme = () => {
-    const title = top.current;
-    const body = document.body;
-    if (theme === "light") {
-      body.classList.add("dark-background");
-      body.classList.remove("light-background");
-      title.classList.add("allPokemonPage__title--dark");
-      title.classList.remove("allPokemonPage__title--light");
-      localStorage.setItem('pokedex', JSON.stringify({ theme: 'dark'}));
-      setTheme("dark");
-    } else {
-      body.classList.add("light-background");
-      body.classList.remove("dark-background");
-      title.classList.add("allPokemonPage__title--light");
-      title.classList.remove("allPokemonPage__title--dark");
-      localStorage.setItem('pokedex', JSON.stringify({
-        theme: 'light'
-      }))
-      setTheme("light");
-    }
-  };
 
   return (
     <div className="allPokemonPage">
