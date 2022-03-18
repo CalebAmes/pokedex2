@@ -24,7 +24,7 @@ const AllPokemon = () => {
     grid.current.lastChild.scrollIntoView({ behavior: "smooth" });
   };
 
-  const grabPokemon x  = async (offset: number = 0, scroll: boolean = false) => {
+  const grabPokemon = async (offset: number = 0, scroll: boolean = false) => {
     const data = await fetchPokemon(offset);
     if (offset !== 0) {
       setPokemon((pokemon) => [...pokemon, ...data]);
